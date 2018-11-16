@@ -25,15 +25,25 @@ var correctAnswers = 0
 var wrongAnswers = 0
 var index = 0;
 var questionText = "Who Painted this?"
+// loadChoices()
+// startTimer()
+$("#startButton").click(function () {
+    showPanels();
+  console.log("start")
+    startTimer()
+    $("#choicePanelOne").empty();
+    $("#choicePanelTwo").empty()
+    loadChoices()
+})
+$("#nextButton").click(function () {
+    showPanels();
+    index++
+    startTimer()
+    $("#choicePanelOne").empty();
+    $("#choicePanelTwo").empty()
+    loadChoices()
 
-function loadQuestion() {
-    $("#quizPanel").html(questionText)
-}
-// loadQuestion()  a text check for me.
-
-loadQuestion()
-loadChoices()
-choose()
+})
 
 //timer
 function startTimer() {
@@ -53,51 +63,62 @@ function startTimer() {
         }
     }
 }
-startTimer()
+// function loadQuestion() {
+//     $("#quizPanel").html(questionText)
+// }
+// loadQuestion()  a text check for me.
+
 function loadChoices() {
-    var $inputA = $("<input type = 'button'class = 'buttons' id = 'buttonA' value='a' />");
+    $("#quizPanel").html(questionText);
+
+    var $inputA = $("<input type = 'button'class = 'buttons' id = 'buttonA' value='a' >");
     $inputA.appendTo($("#choicePanelOne"));
     $("#choicePanelOne").append(questionArray[index].choices[0]);
 
-    var $inputB = $("<input type = 'button'class = 'buttons' id = 'buttonB' value='b' />");
+    var $inputB = $("<input type = 'button'class = 'buttons' id = 'buttonB' value='b' >");
     $inputB.appendTo($("#choicePanelTwo"));
     $("#choicePanelTwo").append(questionArray[index].choices[1]);
+
+    
+    $("#buttonA").click(function () {
+        console.log("abutton clicked")
+        clearInterval(interval)
+        userAnswer = "a";
+        userAnswerArr.push("a");
+        evalAnswer()
+    })
+    $("#buttonB").click(function () {
+        clearInterval(interval)
+        userAnswer = "b";
+        userAnswerArr.push("b");
+        evalAnswer()
+    });
+    
 }
-function choose(){
-$("#buttonA").click(function () {
-    clearInterval(interval)
-    userAnswer = "a";
-    userAnswerArr.push("a");
-    if (userAnswer === corAnswerArr[index]) {
-        correctAnswers++
-        rightAns();
-    } else {
-        wrongAnswers++
-        wrongAns();
+
+function evalAnswer(){
+if (userAnswer === corAnswerArr[index]) {
+    correctAnswers++
+            rightAns();
+        } else {
+            wrongAnswers++
+            wrongAns();
+        }
     }
 
-})
-$("#buttonB").click(function () {
-    clearInterval(interval)
-    userAnswer = "b";
-    userAnswerArr.push("b");
-    if (userAnswer === corAnswerArr[index]) {
-        correctAnswers++
-        rightAns();
-    } else {
-        wrongAnswers++
-        wrongAns();
-    }
-});
-}
+// loadQuestion()
+
+
+
+
 function rightAns() {
     hidePanels()
-    $("#messagePanel").append("Yes! Good job!");
+    $("#messagePanel").text("Yes! Good job!");
 
 }
 function wrongAns() {
     hidePanels()
-    $("#messagePanel").append("Nope, Better luck next time!");
+    $("#messagePanel").text("Nope, Better luck next time!");
 
 }
 function hidePanels() {
@@ -116,17 +137,6 @@ function showPanels() {
     $("#choicePanelFour").show(3000)
     $("#messagePanel").hide(3000)
 }
-$("#nextButton").click(function () {
-    showPanels();
-    index++
-    startTimer()
-    $("#choicePanelOne").empty();
-    $("#choicePanelTwo").empty()
-
-
-    loadChoices()
-    choose()
-})
 
 console.log(index)
 console.log(questionArray[index].choices[0])
