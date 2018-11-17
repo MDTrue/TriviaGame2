@@ -1,24 +1,51 @@
 
 
 var questionArray = [{
-    question: "who",
-    choices: ["boat", "desk", 4, 5,],
-    corAnswer: "correct answer"
+    
+    choices: ["Picasso", "Dali", "Miro", "Klee",],
+    corAnswer: " Picasso",
+    artWork:  "assets/images/artWorkOne.jpg"
 }, {
-    question: "what",
-    choices: ["carriage", "horse", 8, 9],
-    corAnswer: "b"
+    choices: ["DaVinci", "Michelangelo", "Raphael", "Titian"],
+    corAnswer: "Michelangelo",
+    artWork:  "assets/images/artWorkTwo.jpg"
 }, {
-    question: "when",
-    choices: ["lantern", "jaw", 12, 13],
-    corAnswer: "c"
+    choices: ["Banksy", "Pollock", "Warhol", "Lichtenstein"],
+    corAnswer: "Warhol",
+    artWork:  "assets/images/artWorkThree.jpg"
 }, {
-    question: "where",
-    choices: [14, 15, 16, 17],
-    corAnswer: "d"
+    choices: ["Renoir", "VanGogh", "Monet", "Degas"],
+    corAnswer: "Degas",
+    artWork:  "assets/images/artWorkFour.jpg"
+}, {
+    choices: ["Miro", "Picasso", "Pollock", "Duchamp"],
+    corAnswer: "Pollock",
+    artWork:  "assets/images/artWorkFive.jpg"
+}, {
+    choices: ["Titian", "DaVinci", "Rembrandt", "Vermeer"],
+    corAnswer: "Vermeer",
+    artWork:  "assets/images/artWorkSix.jpg"
+}, {
+    choices: ["Kahlo", "Degas", "Monet", "Rivera"],
+    corAnswer: "Kahlo",
+    artWork:  "assets/images/artWorkSeven.jpg"
+}, {
+    choices: ["Duchamp", "Dali", "Gaugin", "VanGogh"],
+    corAnswer: "VanGogh",
+    artWork:  "assets/images/artWorkEight.jpg"
+}, {
+    choices: ["Michelangelo", "DaVinci", "Titian", "Raphael"],
+    corAnswer: "DaVinci",
+    artWork:  "assets/images/artWorkNine.jpg"
+}, {
+    choices: ["VanGogh", "O'keeffe", "Monet", "Degas"],
+    corAnswer: "Monet",
+    artWork:  "assets/images/artWorkTen.jpg"
+    
+    
 }]
 // console.log(questionArray[1].question) just a check to help me 
-var corAnswerArr = ["a", "b", "c", "d"];
+var corAnswerArr = ["a", "b", "c", "d", "c","d","a","d","b","c"];
 var userAnswerArr = [];
 var userAnswer
 var correctAnswers = 0
@@ -33,7 +60,9 @@ $("#startButton").click(function () {
     console.log("start")
     startTimer()
     $("#choicePanelOne").empty();
-    $("#choicePanelTwo").empty()
+    $("#choicePanelTwo").empty();
+    $("#choicePanelThree").empty();
+    $("#choicePanelFour").empty();
     loadChoices()
     $("#startButton").hide(3000)
     $("#reStartButton").hide(3000)
@@ -46,6 +75,8 @@ $("#nextButton").click(function () {
     startTimer();
     $("#choicePanelOne").empty();
     $("#choicePanelTwo").empty();
+    $("#choicePanelThree").empty();
+    $("#choicePanelFour").empty();
     loadChoices();
     console.log(index)
     console.log(questionArray[index].choices[0])
@@ -86,14 +117,24 @@ function startTimer() {
     
     function loadChoices() {
         $("#quizPanel").html(questionText);
+        $(".artWork").attr('src', (questionArray[index].artWork)) 
         
         var $inputA = $("<input type = 'button'class = 'buttons' id = 'buttonA' value='a' >");
         $inputA.appendTo($("#choicePanelOne"));
         $("#choicePanelOne").append(questionArray[index].choices[0]);
         
+        
         var $inputB = $("<input type = 'button'class = 'buttons' id = 'buttonB' value='b' >");
         $inputB.appendTo($("#choicePanelTwo"));
         $("#choicePanelTwo").append(questionArray[index].choices[1]);
+
+        var $inputC = $("<input type = 'button'class = 'buttons' id = 'buttonC' value='a' >");
+        $inputC.appendTo($("#choicePanelThree"));
+        $("#choicePanelThree").append(questionArray[index].choices[2]);
+
+        var $inputD = $("<input type = 'button'class = 'buttons' id = 'buttonD' value='a' >");
+        $inputD.appendTo($("#choicePanelFour"));
+        $("#choicePanelFour").append(questionArray[index].choices[3]);
         
         
         $("#buttonA").click(function () {
@@ -109,6 +150,20 @@ function startTimer() {
             userAnswerArr.push("b");
             evalAnswer()
         });
+        $("#buttonC").click(function () {
+            clearInterval(interval)
+            userAnswer = "c";
+            userAnswerArr.push("c");
+            evalAnswer()
+        });
+        $("#buttonD").click(function () {
+            clearInterval(interval)
+            userAnswer = "d";
+            userAnswerArr.push("d");
+            evalAnswer()
+        });
+        
+
         console.log(userAnswerArr)
         
     }
@@ -161,4 +216,5 @@ function startTimer() {
         $("#messagePanel").text("You got " + correctAnswers + "correct and " + wrongAnswers + " wrong. Press start to play again.");
         $("#reStartButton").show(3000)
         $("#nextButton").hide(3000)
+        $(".artWork").hide(3000)
     }
