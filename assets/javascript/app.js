@@ -206,6 +206,7 @@ function startTimer() {
     function wrongAns() {
         hidePanels()
         $("#messagePanel").text("Nope, The correct answer was " + questionArray[index].corAnswer);
+        $("#messagePanelTwo").text("");
         
     }
     function hidePanels() {
