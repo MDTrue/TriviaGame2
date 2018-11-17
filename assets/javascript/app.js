@@ -4,43 +4,55 @@ var questionArray = [{
     
     choices: ["Picasso", "Dali", "Miro", "Klee",],
     corAnswer: " Picasso",
-    artWork:  "assets/images/artWorkOne.jpg"
+    artWork:  "assets/images/artWorkOne.jpg",
+    artWorkText: "Picasso's ponytail series, inspired by model and muse, Sylvette David, is one of his least known.",
 }, {
     choices: ["DaVinci", "Michelangelo", "Raphael", "Titian"],
     corAnswer: "Michelangelo",
-    artWork:  "assets/images/artWorkTwo.jpg"
+    artWork:  "assets/images/artWorkTwo.jpg",
+    artWorkText: "Painted when he was 12 or 13 it earned him early recognition of his talent."
 }, {
     choices: ["Banksy", "Pollock", "Warhol", "Lichtenstein"],
     corAnswer: "Warhol",
-    artWork:  "assets/images/artWorkThree.jpg"
+    artWork:  "assets/images/artWorkThree.jpg",
+    artWorkText: "Andy Warhol was a conservationist and he created this endangered species series in 1983."
 }, {
     choices: ["Renoir", "VanGogh", "Monet", "Degas"],
     corAnswer: "Degas",
-    artWork:  "assets/images/artWorkFour.jpg"
+    artWork:  "assets/images/artWorkFour.jpg",
+    artWorkText: "Degas hated painting portraits, but he accepted this commission from a woman he had previously painted as a dancer. After seeing it she refused to pay."
+
 }, {
     choices: ["Miro", "Picasso", "Pollock", "Duchamp"],
     corAnswer: "Pollock",
-    artWork:  "assets/images/artWorkFive.jpg"
+    artWork:  "assets/images/artWorkFive.jpg",
+    artWorkText: "This is an early Pollock showing his art school training, before he started dripping paint"
 }, {
     choices: ["Titian", "DaVinci", "Rembrandt", "Vermeer"],
     corAnswer: "Vermeer",
-    artWork:  "assets/images/artWorkSix.jpg"
+    artWork:  "assets/images/artWorkSix.jpg",
+    artWorkText: "Called the ugly Vermeer, it was probably painted for his mother-in-law who was a devote catholic, and supporting him and his 10 kids."
 }, {
     choices: ["Kahlo", "Degas", "Monet", "Rivera"],
     corAnswer: "Kahlo",
-    artWork:  "assets/images/artWorkSeven.jpg"
+    artWork:  "assets/images/artWorkSeven.jpg",
+    artWorkText: "She didn't only paint self portraits"
 }, {
     choices: ["Duchamp", "Dali", "Gaugin", "VanGogh"],
     corAnswer: "VanGogh",
-    artWork:  "assets/images/artWorkEight.jpg"
+    artWork:  "assets/images/artWorkEight.jpg",
+    artWorkText: "Doubted as a real Van Gogh it was verified by x-rays revealing a lost painting of wrestlers that he painted over."
 }, {
     choices: ["Michelangelo", "DaVinci", "Titian", "Raphael"],
     corAnswer: "DaVinci",
-    artWork:  "assets/images/artWorkNine.jpg"
+    artWork:  "assets/images/artWorkNine.jpg",
+    artWorkText: "Although called 'St. John the Baptist' its basically a portrait of DaVinci's partner for twenty five years, Salai."
+
 }, {
     choices: ["VanGogh", "O'keeffe", "Monet", "Degas"],
     corAnswer: "Monet",
-    artWork:  "assets/images/artWorkTen.jpg"
+    artWork:  "assets/images/artWorkTen.jpg",
+    artWorkText: "Others painted sunflowers besides Van Gogh, but not as well."
     
     
 }]
@@ -72,6 +84,7 @@ $("#nextButton").click(function () {
     if(index < (questionArray.length) -1)  {
     showPanels();
     index++;
+    clearInterval(interval)
     startTimer();
     $("#choicePanelOne").empty();
     $("#choicePanelTwo").empty();
@@ -128,11 +141,11 @@ function startTimer() {
         $inputB.appendTo($("#choicePanelTwo"));
         $("#choicePanelTwo").append(questionArray[index].choices[1]);
 
-        var $inputC = $("<input type = 'button'class = 'buttons' id = 'buttonC' value='a' >");
+        var $inputC = $("<input type = 'button'class = 'buttons' id = 'buttonC' value='c' >");
         $inputC.appendTo($("#choicePanelThree"));
         $("#choicePanelThree").append(questionArray[index].choices[2]);
 
-        var $inputD = $("<input type = 'button'class = 'buttons' id = 'buttonD' value='a' >");
+        var $inputD = $("<input type = 'button'class = 'buttons' id = 'buttonD' value='d' >");
         $inputD.appendTo($("#choicePanelFour"));
         $("#choicePanelFour").append(questionArray[index].choices[3]);
         
@@ -188,7 +201,7 @@ function startTimer() {
     function rightAns() {
         hidePanels()
         $("#messagePanel").text("Yes! Good job!");
-        
+        $("#messagePanelTwo").text(questionArray[index].artWorkText);
     }
     function wrongAns() {
         hidePanels()
@@ -202,6 +215,7 @@ function startTimer() {
         $("#choicePanelThree").hide(3000)
         $("#choicePanelFour").hide(3000)
         $("#messagePanel").show(3000)
+        $("#messagePanelTwo").show(3000)
     }
     function showPanels() {
         $("#quizPanel").show(3000)
@@ -210,11 +224,14 @@ function startTimer() {
         $("#choicePanelThree").show(3000)
         $("#choicePanelFour").show(3000)
         $("#messagePanel").hide(3000)
+        $("#messagePanelTwo").hide(3000)
     }
     function gameOver(){
         hidePanels()
-        $("#messagePanel").text("You got " + correctAnswers + "correct and " + wrongAnswers + " wrong. Press start to play again.");
+        $("#messagePanel").text("You got " + correctAnswers + " correct and " + wrongAnswers + " wrong. Press restart to play again.");
         $("#reStartButton").show(3000)
+        $("#messagePanelTwo").text("");
         $("#nextButton").hide(3000)
-        $(".artWork").hide(3000)
+        $(".artWork").attr('src', ("assets/images/artQuestionMark.jpg"))
     }
+ 

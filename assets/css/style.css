@@ -1,24 +1,84 @@
-nav {
-    text-align: center;
+
+body {
     background-color: black;
+  
+   
+}
+
+
+#title {
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 25px;
+    padding: 25px;
+    text-align: center;
+    background-color: rgb(80, 70, 54);
     color: beige
 }
+.buttons {
+   background-color: rgb(80, 70, 54);
+    color: beige;
+    margin: 0px, 40px 0px 10px;
+    border-radius: 50%;
+}
+#startButton, #nextButton, #reStartButton{
+    background-color: rgb(80, 70, 54);
+    color: beige;
+    border-radius: 0;
+
+}
+
 #subTitle {
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 25px;
+    padding: 15px;
     text-align: center;
-    background-color: blue;
-    color: beige
+    background-color: beige;
+    color:  rgb(80, 70, 54);
 }
 #foot {
     text-align: center;
-    background-color: blue;
-    color: beige
+    background-color: beige;
+    color:  rgb(80, 70, 54);
 }
 #container {
-    
+
+    font-family: 'Julius Sans One', sans-serif;
+    font-size: 25px;
     width: 960px;
-    background-color: blueviolet;
-    margin: auto;
-    border-width: 1px;
-    border-style: ridge;
-    border-color: #dddddd;
+    background-color: black;
+    color: rgb(144, 177, 79);
+    margin: auto; 
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgb(170, 131, 48); 
+    
 }
+.trivia {
+    padding: 10px;
+}
+#messagePanel{
+    text-align: center;
+    color: rgb(48, 156, 170);
+
+}
+@media screen and (max-width: 768px){
+    .artWork{
+        float: left;
+    }
+    #container{
+        width: 768px;
+    }
+         
+}
+@media screen and (max-width: 640px){
+    #container{
+        width: 640px;
+    }
+    .artWork{
+        float: left;
+    }
+
+}
+/* font-family: 'Kaushan Script', cursive;
+font-family: 'Poiret One', cursive;
+font-family: 'Julius Sans One', sans-serif; */
