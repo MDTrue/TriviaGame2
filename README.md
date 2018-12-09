@@ -5,7 +5,7 @@ https://mdtrue.github.io/TriviaGame2/
 
 an infinitely expandable picture based quiz format
 
-![Game Image](assets/images/artTrivia.png)
+![Game Image](https://github.com/MDTrue/TriviaGame2/blob/master/assets/images/artTrivia.PNG)
 
 ---
 
